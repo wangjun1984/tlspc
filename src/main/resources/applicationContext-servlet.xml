@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+    
+	<context:annotation-config/> 
+     
+    <mvc:default-servlet-handler/>
+
+    <context:component-scan base-package="com.frogs.activity.controller"/>
+    
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" p:basename="classpath:message">
+        <property name="defaultEncoding" value="utf-8" />
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+     
+    <bean id="annotationUrlMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="order" value="0" />
+    </bean>
+    
+    <bean id="controllerBeanNameHandlerMapping" class="org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping">
+        <property name="order" value="1" />
+    </bean>
+
+    <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+    
+    <!-- 根据客户端的不同的请求决定不同的view进行响应, 如 /blog/1.json /blog/1.xml -->
+    
+    
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    	<property name="order" value="0" />
+   		<property name="contentNegotiationManager" ref="cnManager"/>  
+		<!-- <property name="defaultContentType" value="text/html"/> -->
+		
+    	
+		<!-- 用于开启 /userinfo/123?format=json 的支持 -->
+		<!-- <property name="favorParameter" value="false"/> -->
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+			    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+			        <property name="prefix" value="/WEB-INF/page/"/>
+			        <property name="suffix" value=".jsp"></property>
+			    </bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<!-- for application/json -->
+				<bean class="com.frogs.framework.web.view.CustomMappingJacksonJsonView" />
+				<bean class="com.frogs.framework.web.view.CustomMappingJacksonJsonpView" />
+				<!-- for application/xml -->
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView" >
+					<property name="marshaller">
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+							<property name="autodetectAnnotations" value="true"/>
+							<property name="supportedClasses">
+					  			<list>
+					    				<value>java.util.List</value>
+					    				<value>java.lang.Object</value>
+					  			</list>
+							</property>
+							<property name="aliases">
+                                <props>
+                                    
+                                </props>
+                            </property>
+						</bean>
+					</property>
+                    <property name="contentType">
+						<value>application/xml;charset=utf-8</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+    </bean>
+    
+    <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="defaultContentType" value="text/html"/>
+        
+       <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="shtml" value="text/html"></entry>
+				<entry key="html" value="text/html"></entry>
+				<entry key="php" value="text/html"></entry>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="jsonp" value="application/javascript"/>
+			</map>
+		</property>
+    </bean>
+    <import resource="applicationContext-interceptors.xml"/>
+</beans>

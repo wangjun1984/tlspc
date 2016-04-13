@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--
+cacheModelsEnabled: is start the cache of the SqlMapClient's policy
+enhancementEnabled optimize geter/seter ,upgrade the system
+lazyLoadingEnabled is start lazy policy
+-->
+ <settings>
+    <setting name="cacheEnabled" value="true"/>
+    <setting name="lazyLoadingEnabled" value="true"/>
+    <setting name="safeRowBoundsEnabled" value="true"/>
+    <setting name="logImpl" value="LOG4J"/>  
+  </settings>
+  
+  <mappers>
+	<mapper  resource="com/frogs/framework/base/dao/ibatis/sqlmap/BASE_DAO_MySQL_Mybatis_SqlMap.xml"/>
+  </mappers>
+	
+</configuration>
