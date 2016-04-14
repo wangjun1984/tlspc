@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlspc.wechat_user_base_info" >
+  <resultMap id="WechatUserBaseInfoResult" type="org.jzkangta.tlspc.entity.WechatUserBaseInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sub_scribe" property="subScribe" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+    <result column="subscribe_time" property="subscribeTime" jdbcType="VARCHAR" />
+    <result column="unsubscribe_time" property="unsubscribeTime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="receive_province" property="receiveProvince" jdbcType="VARCHAR" />
+    <result column="receive_city" property="receiveCity" jdbcType="VARCHAR" />
+    <result column="receive_area" property="receiveArea" jdbcType="VARCHAR" />
+    <result column="receive_detail_info" property="receiveDetailInfo" jdbcType="VARCHAR" />
+    <result column="receive_tel" property="receiveTel" jdbcType="VARCHAR" />
+    <result column="receive_zipcode" property="receiveZipcode" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="VARCHAR" />
+    <result column="y" property="y" jdbcType="VARCHAR" />
+    <result column="addrearea" property="addrearea" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="wechat_application_id" property="wechatApplicationId" jdbcType="INTEGER" />
+    <result column="wxuser_id" property="wxuserId" jdbcType="INTEGER" />
+    <result column="union_id" property="unionId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="ByMap_Where_Clause" >
+    <where >
+      <if test="eqId != null" >
+        and id = #{eqId,jdbcType=INTEGER}
+      </if>
+      <if test="inIds != null" >
+        and id in ( ${inIds} )
+      </if>
+      <if test="inIdList != null" >
+        and id in <foreach item="item" index="index" collection="inIdList" open="(" separator=","
+          close=")"> #{ item, jdbcType=INTEGER }</foreach>
+      </if>
+      <if test="gtId != null" >
+        and id <![CDATA[ > ]]> #{gtId,jdbcType=INTEGER}
+      </if>
+      <if test="eqSubScribe != null" >
+        and sub_scribe = #{eqSubScribe,jdbcType=INTEGER}
+      </if>
+      <if test="gtSubScribe != null" >
+        and sub_scribe <![CDATA[ > ]]> #{gtSubScribe,jdbcType=INTEGER}
+      </if>
+      <if test="eqOpenId != null" >
+        and open_id = #{eqOpenId,jdbcType=VARCHAR}
+      </if>
+      <if test="likeOpenId != null" >
+        and open_id like #{likeOpenId,jdbcType=VARCHAR}
+      </if>
+      <if test="eqNickName != null" >
+        and nick_name = #{eqNickName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNickName != null" >
+        and nick_name like #{likeNickName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqCity != null" >
+        and city = #{eqCity,jdbcType=VARCHAR}
+      </if>
+      <if test="likeCity != null" >
+        and city like #{likeCity,jdbcType=VARCHAR}
+      </if>
+      <if test="eqCountry != null" >
+        and country = #{eqCountry,jdbcType=VARCHAR}
+      </if>
+      <if test="likeCountry != null" >
+        and country like #{likeCountry,jdbcType=VARCHAR}
+      </if>
+      <if test="eqProvince != null" >
+        and province = #{eqProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="likeProvince != null" >
+        and province like #{likeProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="eqLanguage != null" >
+        and language = #{eqLanguage,jdbcType=VARCHAR}
+      </if>
+      <if test="likeLanguage != null" >
+        and language like #{likeLanguage,jdbcType=VARCHAR}
+      </if>
+      <if test="eqHeadImgUrl != null" >
+        and head_img_url = #{eqHeadImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="likeHeadImgUrl != null" >
+        and head_img_url like #{likeHeadImgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="eqSubscribeTime != null" >
+        and subscribe_time = #{eqSubscribeTime,jdbcType=VARCHAR}
+      </if>
+      <if test="likeSubscribeTime != null" >
+        and subscribe_time like #{likeSubscribeTime,jdbcType=VARCHAR}
+      </if>
+      <if test="eqUnsubscribeTime != null" >
+        and unsubscribe_time = #{eqUnsubscribeTime,jdbcType=VARCHAR}
+      </if>
+      <if test="likeUnsubscribeTime != null" >
+        and unsubscribe_time like #{likeUnsubscribeTime,jdbcType=VARCHAR}
+      </if>
+      <if test="gtCreateTime != null" >
+        and create_time <![CDATA[ > ]]> #{gtCreateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqUpdateTime != null" >
+        and update_time = #{eqUpdateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="likeUpdateTime != null" >
+        and update_time like #{likeUpdateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiver != null" >
+        and receiver = #{eqReceiver,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiver != null" >
+        and receiver like #{likeReceiver,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveProvince != null" >
+        and receive_province = #{eqReceiveProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveProvince != null" >
+        and receive_province like #{likeReceiveProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveCity != null" >
+        and receive_city = #{eqReceiveCity,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveCity != null" >
+        and receive_city like #{likeReceiveCity,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveArea != null" >
+        and receive_area = #{eqReceiveArea,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveArea != null" >
+        and receive_area like #{likeReceiveArea,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveDetailInfo != null" >
+        and receive_detail_info = #{eqReceiveDetailInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveDetailInfo != null" >
+        and receive_detail_info like #{likeReceiveDetailInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveTel != null" >
+        and receive_tel = #{eqReceiveTel,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveTel != null" >
+        and receive_tel like #{likeReceiveTel,jdbcType=VARCHAR}
+      </if>
+      <if test="eqReceiveZipcode != null" >
+        and receive_zipcode = #{eqReceiveZipcode,jdbcType=VARCHAR}
+      </if>
+      <if test="likeReceiveZipcode != null" >
+        and receive_zipcode like #{likeReceiveZipcode,jdbcType=VARCHAR}
+      </if>
+      <if test="eqX != null" >
+        and x = #{eqX,jdbcType=VARCHAR}
+      </if>
+      <if test="likeX != null" >
+        and x like #{likeX,jdbcType=VARCHAR}
+      </if>
+      <if test="eqY != null" >
+        and y = #{eqY,jdbcType=VARCHAR}
+      </if>
+      <if test="likeY != null" >
+        and y like #{likeY,jdbcType=VARCHAR}
+      </if>
+      <if test="eqAddrearea != null" >
+        and addrearea = #{eqAddrearea,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAddrearea != null" >
+        and addrearea like #{likeAddrearea,jdbcType=VARCHAR}
+      </if>
+      <if test="eqUserId != null" >
+        and user_id = #{eqUserId,jdbcType=INTEGER}
+      </if>
+      <if test="gtUserId != null" >
+        and user_id <![CDATA[ > ]]> #{gtUserId,jdbcType=INTEGER}
+      </if>
+      <if test="eqWechatApplicationId != null" >
+        and wechat_application_id = #{eqWechatApplicationId,jdbcType=INTEGER}
+      </if>
+      <if test="gtWechatApplicationId != null" >
+        and wechat_application_id <![CDATA[ > ]]> #{gtWechatApplicationId,jdbcType=INTEGER}
+      </if>
+      <if test="eqWxuserId != null" >
+        and wxuser_id = #{eqWxuserId,jdbcType=INTEGER}
+      </if>
+      <if test="gtWxuserId != null" >
+        and wxuser_id <![CDATA[ > ]]> #{gtWxuserId,jdbcType=INTEGER}
+      </if>
+      <if test="eqUnionId != null" >
+        and union_id = #{eqUnionId,jdbcType=VARCHAR}
+      </if>
+      <if test="likeUnionId != null" >
+        and union_id like #{likeUnionId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <select id="selectById" resultMap="WechatUserBaseInfoResult" parameterType="java.lang.Integer" >
+    select id, sub_scribe, open_id, nick_name, city, country, province, language, head_img_url,
+      subscribe_time, unsubscribe_time, create_time, update_time, receiver, receive_province,
+      receive_city, receive_area, receive_detail_info, receive_tel, receive_zipcode, x, y,
+      addrearea, user_id, wechat_application_id, wxuser_id, union_id
+    from wechat_user_base_info
+    where id = #{value}
+  </select>
+  <select id="selectByMap" resultMap="WechatUserBaseInfoResult" parameterType="java.util.Map" >
+    select id, sub_scribe, open_id, nick_name, city, country, province, language, head_img_url,
+      subscribe_time, unsubscribe_time, create_time, update_time, receiver, receive_province,
+      receive_city, receive_area, receive_detail_info, receive_tel, receive_zipcode, x, y,
+      addrearea, user_id, wechat_application_id, wxuser_id, union_id
+    from wechat_user_base_info
+    <if test="_parameter != null" >
+      <include refid="tlspc.wechat_user_base_info.ByMap_Where_Clause" />
+      <if test="orderByClause != null" >
+        order by ${orderByClause}
+      </if>
+      <include refid="BASE_DAO.pagination_End" />
+    </if>
+  </select>
+  <select id="selectByMap_count" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(1) from wechat_user_base_info
+    <if test="_parameter != null" >
+      <include refid="tlspc.wechat_user_base_info.ByMap_Where_Clause" />
+    </if>
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from wechat_user_base_info
+     where id = #{value}
+  </delete>
+  <delete id="deleteByMap" parameterType="java.util.Map" >
+    delete from wechat_user_base_info
+    <include refid="tlspc.wechat_user_base_info.ByMap_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="org.jzkangta.tlspc.entity.WechatUserBaseInfo" >
+    insert into wechat_user_base_info (id, sub_scribe, open_id, nick_name, city, country, province,
+      language, head_img_url, subscribe_time, unsubscribe_time, create_time, update_time, receiver,
+      receive_province, receive_city, receive_area, receive_detail_info, receive_tel,
+      receive_zipcode, x, y, addrearea, user_id, wechat_application_id, wxuser_id, union_id)
+    values (#{id,jdbcType=INTEGER}, #{subScribe,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
+      #{province,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, #{headImgUrl,jdbcType=VARCHAR},
+      #{subscribeTime,jdbcType=VARCHAR}, #{unsubscribeTime,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=VARCHAR},
+      #{receiver,jdbcType=VARCHAR}, #{receiveProvince,jdbcType=VARCHAR},
+      #{receiveCity,jdbcType=VARCHAR}, #{receiveArea,jdbcType=VARCHAR},
+      #{receiveDetailInfo,jdbcType=VARCHAR}, #{receiveTel,jdbcType=VARCHAR},
+      #{receiveZipcode,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR}, #{y,jdbcType=VARCHAR},
+      #{addrearea,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+      #{wechatApplicationId,jdbcType=INTEGER}, #{wxuserId,jdbcType=INTEGER},
+      #{unionId,jdbcType=VARCHAR})
+    <selectKey resultType="java.lang.Integer" keyProperty="id" >SELECT LAST_INSERT_ID() as id
+      </selectKey>
+  </insert>
+  <update id="updateById" parameterType="org.jzkangta.tlspc.entity.WechatUserBaseInfo" >
+    update wechat_user_base_info
+    set sub_scribe = #{subScribe,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
+      head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+      subscribe_time = #{subscribeTime,jdbcType=VARCHAR},
+      unsubscribe_time = #{unsubscribeTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{receiveCity,jdbcType=VARCHAR},
+      receive_area = #{receiveArea,jdbcType=VARCHAR},
+      receive_detail_info = #{receiveDetailInfo,jdbcType=VARCHAR},
+      receive_tel = #{receiveTel,jdbcType=VARCHAR},
+      receive_zipcode = #{receiveZipcode,jdbcType=VARCHAR},
+      x = #{x,jdbcType=VARCHAR},
+      y = #{y,jdbcType=VARCHAR},
+      addrearea = #{addrearea,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      wechat_application_id = #{wechatApplicationId,jdbcType=INTEGER},
+      wxuser_id = #{wxuserId,jdbcType=INTEGER},
+      union_id = #{unionId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map" >
+    update wechat_user_base_info
+    <trim prefix="set" suffixOverrides="," >
+      <if test="subScribe != null" >
+        sub_scribe = #{subScribe,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="headImgUrl != null" >
+        head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribeTime != null" >
+        subscribe_time = #{subscribeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="unsubscribeTime != null" >
+        unsubscribe_time = #{unsubscribeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null" >
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvince != null" >
+        receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCity != null" >
+        receive_city = #{receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveArea != null" >
+        receive_area = #{receiveArea,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailInfo != null" >
+        receive_detail_info = #{receiveDetailInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTel != null" >
+        receive_tel = #{receiveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveZipcode != null" >
+        receive_zipcode = #{receiveZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="addrearea != null" >
+        addrearea = #{addrearea,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="wechatApplicationId != null" >
+        wechat_application_id = #{wechatApplicationId,jdbcType=INTEGER},
+      </if>
+      <if test="wxuserId != null" >
+        wxuser_id = #{wxuserId,jdbcType=INTEGER},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <if test="_parameter != null" >
+      <include refid="tlspc.wechat_user_base_info.ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

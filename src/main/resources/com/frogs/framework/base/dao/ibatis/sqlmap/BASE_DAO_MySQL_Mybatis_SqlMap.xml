@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BASE_DAO" >
+  <select id="BASE_DAO.getCurrentTime"  resultType="java.util.Date">
+    select now() 
+  </select>
+  
+  <sql id="BASE_DAO.pagination_Clause">
+      <if test="pageturn != null" >
+	   limit #{pageturn.start,jdbcType=INTEGER}, #{pageturn.pageSize,jdbcType=INTEGER}
+     </if>
+  </sql>  
+  
+  <sql id="BASE_DAO.pagination_Start">
+  </sql>  
+  <sql id="BASE_DAO.pagination_End">
+  	<if test="pageturn != null" >
+	   limit #{pageturn.start,jdbcType=INTEGER}, #{pageturn.pageSize,jdbcType=INTEGER}
+     </if>
+  </sql>  
+
+  <select id="BASE_DAO.getSequenceNextValue" parameterType="java.lang.String" resultType="java.lang.Integer">
+	UPDATE sys_sequence SET currentid=LAST_INSERT_ID(currentid+1)  where name=$value$;
+	
+	SELECT LAST_INSERT_ID();
+  </select>
+  
+  <select id="BASE_DAO.getSequenceCurrentValue" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select currentid from sys_sequence where name=$value$
+  </select>
+
+  <select id="BASE_DAO.getRowCountOfTable" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(1) from #{value}
+  </select>
+  
+  <select id="BASE_DAO.getCountFromCacheTable" parameterType="java.lang.String" resultType="org.jzkangta.tlspc.framework.base.dao.mybatis.CountCacheItem">
+    select COUNT_VALUE, EXPIRE_SECOND, UPDATE_TIME from SYS_COUNT_CACHE where COUNT_KEY=#{value};
+  </select>
+
+  <insert id="BASE_DAO.insertCountCache2Table" parameterType="org.jzkangta.tlspc.framework.base.dao.mybatis.CountCacheItem" >
+    insert into SYS_COUNT_CACHE (COUNT_KEY, COUNT_VALUE, EXPIRE_SECOND, UPDATE_TIME)
+    values (#{countKey,jdbcType=VARCHAR}, #{countValue,jdbcType=DECIMAL}, #{expireSecond,jdbcType=DECIMAL}, now() )
+  </insert>
+  
+  <update id="BASE_DAO.updateCountCache2Table" parameterType="org.jzkangta.tlspc.framework.base.dao.mybatis.CountCacheItem" >
+    update SYS_COUNT_CACHE
+    set COUNT_VALUE = #{countValue,jdbcType=DECIMAL}, EXPIRE_SECOND = #{expireSecond,jdbcType=DECIMAL}, UPDATE_TIME = now()
+    where COUNT_KEY = #{countKey,jdbcType=VARCHAR}
+  </update>  
+
+    
+</mapper>

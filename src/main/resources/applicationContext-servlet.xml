@@ -20,7 +20,7 @@
      
     <mvc:default-servlet-handler/>
 
-    <context:component-scan base-package="com.frogs.activity.controller"/>
+    <context:component-scan base-package="org.jzkangta.tlspc.controller"/>
     
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" p:basename="classpath:message">
@@ -55,7 +55,7 @@
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 			    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-			        <property name="prefix" value="/WEB-INF/page/"/>
+			        <property name="prefix" value="/page/"/>
 			        <property name="suffix" value=".jsp"></property>
 			    </bean>
 			</list>
@@ -63,8 +63,8 @@
 		<property name="defaultViews">
 			<list>
 				<!-- for application/json -->
-				<bean class="com.frogs.framework.web.view.CustomMappingJacksonJsonView" />
-				<bean class="com.frogs.framework.web.view.CustomMappingJacksonJsonpView" />
+				<bean class="org.jzkangta.tlspc.framework.web.view.CustomMappingJacksonJsonView" />
+				<bean class="org.jzkangta.tlspc.framework.web.view.CustomMappingJacksonJsonpView" />
 				<!-- for application/xml -->
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView" >
 					<property name="marshaller">
@@ -84,7 +84,7 @@
 						</bean>
 					</property>
                     <property name="contentType">
-						<value>application/xml;charset=utf-8</value>
+						<value>application/xml;charset=utf-8</value>  
 					</property>
 				</bean>
 			</list>
@@ -102,11 +102,10 @@
 				<entry key="shtml" value="text/html"></entry>
 				<entry key="html" value="text/html"></entry>
 				<entry key="php" value="text/html"></entry>
-				<entry key="json" value="application/json" />
+				<!-- <entry key="json" value="application/json" /> -->
 				<entry key="xml" value="application/xml" />
 				<entry key="jsonp" value="application/javascript"/>
 			</map>
 		</property>
     </bean>
-    <import resource="applicationContext-interceptors.xml"/>
 </beans>
